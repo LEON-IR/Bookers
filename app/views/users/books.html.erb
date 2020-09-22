@@ -1,0 +1,74 @@
+<head>
+</head>
+<body>
+
+	<div class="flash">
+		<% flash.each do |key,value| %>
+		  <%= content_tag(:div, value, class: "#{key}") %>
+		<% end %>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3" style="background-color: white">
+				<h2>User info</h2>
+				<%= attachment_image_tag current_user, :image, :fill, 150, 150, format: 'jpeg' %>
+				<table class="table table-hover">
+
+					<tbody>
+						<tr>
+							<td><strong>name</strong></td>
+							<td><strong><%= current_user.name %></strong></td>
+						</tr>
+						<tr>
+							<td><strong>introduction</strong></td>
+							<td><strong><%= current_user.Introduction %></strong></td>
+						</tr>
+					</tbody>
+				</table>
+
+		<%= link_to(edit_user_path(current_user.id), class: "btn btn-default") do %>
+		   <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+		<% end %>
+
+	<h1>New book</h1>
+
+	<%= form_for(@book) do |f| %>
+
+	  <p>Title</p>
+	  <%= f.text_field :title, class: "edit-title" %>
+
+	  <p>Body</p>
+	  <%= f.text_field :body, class: "edit-body" %>
+	  <br>
+	  <button class="btn btn-primary"><%= f.submit '        Create Book        '%></button>
+
+	<% end %>
+
+</div>
+<div class="col-lg-9">
+
+	<h1>Books</h1>
+
+	    <table class="table table-striped">
+	    	<thead>
+	    		<tr>
+	    			<th><p>image</p></th>
+	    			<th><p>title</p></th>
+	    			<th><p>opinion</p></th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    		<% @users.each do |user| %>
+
+	    			<tr class="new-table">
+	    				<td><span><%= attachment_image_tag current_user, :image, :fill, 50, 50, format: 'jpeg' %></span></td>
+	    				<td><span><%= link_to book.title, "/book/#{book.id}"%></span></td>
+	    				<td><span><%= book.body %></span></td>
+	    			</tr>
+	    	    <% end %>
+	    	</tbody>
+	    </table>
+	</div>
+</div>
+</div>
