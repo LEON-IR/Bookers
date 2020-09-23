@@ -7,7 +7,7 @@
     <div class="container">
     	<div class="row">
     		<div class="col-xs-3">
-    			<%= render  'users/userinfo', user: current_user %>
+    			<%= render  'users/userinfo', user: @user %>
 
                 <%= render 'books/new', book: @book %>
     </div>
@@ -25,7 +25,7 @@
     		<tbody>
     			<% @books.each do |book| %>
     			  <tr class="new table">
-    			  	<td><span><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg' %></span></td>
+    			  	<td><span><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></span></td>
     			  	<td><span><%= link_to book.title, book, class: "books_#{book.id}" %></span> </td>
     			  	<td><span><%= book.body %></span> </td>
     			  </tr>
