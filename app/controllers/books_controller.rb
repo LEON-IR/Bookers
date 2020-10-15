@@ -8,6 +8,8 @@ class BooksController < ApplicationController
 		@user = @book.user
 		@books = Book.all
 		@book_new = Book.new
+		@book_comments = @book.book_comments
+		@book_comment = BookComment.new
 	end
 
 	def create
@@ -35,7 +37,7 @@ class BooksController < ApplicationController
 	def update
 		@book = Book.find(params[:id])
 		if@book.update(book_params)
-		   flash[:success] = "Book was successfully update"
+		   flash[:success] = "You have updated book successfully."
            redirect_to book_path(@book)
         else
         	edit_book_path(@book)
@@ -55,7 +57,7 @@ class BooksController < ApplicationController
 
 	private
 	def book_params
-		params.require(:book).permit(:title, :body, :image)
+		params.require(:book).permit(:title, :body, :image, :user_id)
 	end
 
 	def correct_user

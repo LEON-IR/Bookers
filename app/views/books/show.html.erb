@@ -27,12 +27,27 @@
 			              <%= @book.title %>
 			    <% end %></td>
 			    <td><span><%= @book.body %></span></td>
+			    <td>
+			    	<%= render 'favorites/favorites_button', book: @book %>
+			    </td>
                 <% if current_user.id == @book.user_id %>
 			    <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
 			    <td><%= link_to "Destroy", book_path(@book.id), method: :delete %></td>
                <% end %>
 			    </tr>
 			  </table>
+
+			  <h3>コメント</h3>
+			  <table class="table" id="comment_list">
+			  	    <%= render 'book_comments/comments', book_comments: @book_comments %>
+			  </table>
+
+			  <div class="row">
+			  	    <%= form_with model:[@book, @book_comment], local: true do |f| %>
+			  	        <%= f.text_area :comment, class: "col-xs-10",id: "book_comment_content" %>
+			  	        <%= f.submit '送信' %>
+			  	    <% end %>
+			  </div>
 			  <p>CopyRight Infratop.inc</p>
 		</div>
 	</div>

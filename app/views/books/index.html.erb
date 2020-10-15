@@ -37,6 +37,12 @@
                 <%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %><% end %></td>
               <td><span><%= link_to book.title, book, class: "books_#{book.id}" %></span> </td>
               <td><span><%= book.body %></span></td>
+
+              <td>
+                <%= render 'favorites/favorites_button', book: book %>
+              </td>
+
+              <td>コメント数 : <span id="book_comments_count"><%= book.book_comments.count %></span></td>
             </tr>
           <% end %>
                 </tr>

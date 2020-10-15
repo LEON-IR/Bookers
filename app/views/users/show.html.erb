@@ -27,7 +27,7 @@
     			  <tr class="new table">
     			  	<td><span><%= attachment_image_tag book.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg" %></span></td>
     			  	<td><span><%= link_to book.title, book, class: "books_#{book.id}" %></span> </td>
-    			  	<td><span><%= book.body %></span> </td>
+    			  	<td><span><%= book.body %></span></td>
     			  </tr>
     			<% end %>
     		</tbody>
